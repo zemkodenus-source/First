@@ -1,0 +1,21 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Профіль{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <h3>Профіль</h3>
+
+    {% if user.profile.photo %}
+        <img src="{{ user.profile.photo.url }}" alt="{{ user.username }}">
+    {% else %}
+        <!-- Показуємо іконку, тільки якщо немає фото -->
+        <i class="fa-solid fa-circle-user auth-icon"></i>
+    {% endif %}
+
+    <p><strong>Користувач:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+</div>
+
+{% endblock %}

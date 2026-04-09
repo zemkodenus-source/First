@@ -1,0 +1,208 @@
+/* Добавь это в самое начало файла CSS */
+* { box-sizing: border-box; }
+
+.sidebar {
+    position: fixed; /* Это удерживает меню слева */
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #FFFFFF;
+    border-right: 1px solid #E2E8F0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin-left: 260px; /* ЭТОТ ОТСТУП подвинет Big Money вправо от меню */
+    padding: 40px;
+    width: calc(100% - 260px);
+}
+
+/* Скрываем точки в списке, если они вылезают */
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- Загальні налаштування сторінки --- */
+body {
+    background: #F1F5F9; /* Трохи насиченіший сірий для контрасту з білим меню */
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    color: #1E293B;
+}
+
+/* --- БІЧНА ПАНЕЛЬ (SIDEBAR) --- */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #FFFFFF;
+    border-right: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+/* Блок Логотипу */
+.sidebar-header {
+    padding: 0 25px;
+    margin-bottom: 45px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 900;
+    color: #1E293B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Секція Навігації (Заголовки груп) */
+.navigation-section {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.navigation-section h3 {
+    font-size: 11px;
+    color: #94A3B8; /* Світло-сірий для підписів категорій */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0 25px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+/* Іконка папки перед "ДОКУМЕНТИ" */
+.navigation-section h3 i {
+    margin-right: 10px;
+    font-size: 13px;
+    color: #64748B;
+}
+
+/* Меню навігації */
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.nav-link {
+    text-decoration: none;
+    display: block;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Елемент списку (рядок меню) */
+.nav-menu li {
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Іконки для головних пунктів (як "Головна") */
+.nav-menu li i.main-icon {
+    width: 20px;
+    margin-right: 12px;
+    font-size: 16px;
+    color: #64748B;
+}
+
+/* Маркери-крапки для підпунктів (у розділі ДОКУМЕНТИ) */
+.nav-menu li.sub-item::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background-color: #CBD5E1;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+/* Ефекти наведення */
+.nav-link:hover li {
+    background-color: #F8FAFC;
+    color: #0F172A;
+}
+
+/* Активний пункт меню (як на скрині - темний фон) */
+.nav-link.active li {
+    background-color: #1E293B;
+    color: #FFFFFF !important;
+}
+
+.nav-link.active li i,
+.nav-link.active li::before {
+    color: #FFFFFF;
+    background-color: #FFFFFF; /* Для крапки */
+}
+
+/* --- ОСНОВНИЙ КОНТЕНТ --- */
+main {
+    margin-left: 260px;
+    padding: 40px 60px;
+    width: calc(100% - 260px);
+    box-sizing: border-box;
+}
+
+main h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* --- ТАБЛИЦІ (як на скрині) --- */
+.table-container {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: #1E293B;
+}
+
+.table thead th {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 14px 20px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 14px;
+    color: #334155;
+}
+
+/* Чергування кольорів рядків */
+.table tbody tr:nth-child(even) {
+    background-color: #F8FAFC;
+}

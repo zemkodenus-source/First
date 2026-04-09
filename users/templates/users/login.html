@@ -1,0 +1,34 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Увійти | Buy & Enjoy{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <i class="fa-solid fa-circle-user auth-icon"></i>
+            <h1>Вхід</h1>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="auth-form-fields">
+                {{ form.as_p }}
+            </div>
+
+            <div class="auth-actions">
+                <!-- Кнопка на всю ширину -->
+                <button class="btn btn-primary btn-auth-submit" type="submit">
+                    Увійти
+                </button>
+
+                <div class="auth-footer">
+                    <span class="text-muted small">Немає акаунту?</span>
+                    <a href="{% url 'registration' %}" class="reg-link small">Зареєструватися</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

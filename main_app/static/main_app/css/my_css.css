@@ -1,0 +1,316 @@
+/* --- ГЛОБАЛЬНІ НАЛАШТУВАННЯ --- */
+
+* {
+    margin: 0; /* Прибираємо стандартні зовнішні відступи у всіх елементів */
+    padding: 0; /* Прибираємо стандартні внутрішні відступи у всіх елементів */
+    box-sizing: border-box; /* Рахуємо ширину елемента разом із padding та border, щоб нічого не "вилізало" */
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif; /* Встановлюємо сучасний шрифт для всієї сторінки */
+    /*display: flex;*/  /* Активуємо Flexbox, щоб розташувати меню (зліва) та контент (справа) */
+    background-color: #f4f4f4; /* Встановлюємо світло-сірий фон сторінки */
+    min-height: 100vh; /* Мінімальна висота тіла сторінки — на весь екран */
+}
+
+
+
+/* бічне меню */
+
+.side-menu {
+    width: 300px;  /* ширина у пікселях */
+    height: 100vh; /* висота у відсотках */
+    background-color: #aaaaaa; /* колір фону меню */
+    color: #000000; /* Білий колір тексту всередині меню */
+    padding: 25px; /* Внутрішні відступи від країв меню до контенту */
+    position: fixed; /* Меню "приклеєне" до екрана і не рухається при прокрутці */
+    left: 0; /* Притискаємо меню до лівого краю */
+    top: 0; /* Притискаємо меню до верхнього краю */
+}
+
+.side-menu h3 {
+    text-align: center;  /* розташування заголовка*/
+    font-size: 1.6rem; /* Встановлюємо розмір шрифту заголовка */
+    margin-bottom: 30px; /* Відступ знизу від заголовка до пунктів списку */
+    letter-spacing: 1px; /* Трохи збільшуємо відстань між літерами */
+}
+
+
+
+/* робота із посиланнями у бічному меню */
+
+.nav-menu {
+    list-style: none; /* Прибираємо стандартні маркери (крапочки) списку <ul> */
+    /* text-align: center; /* Весь список буде по центру */
+}
+
+
+.nav-link {
+    text-decoration: none; /* прибирає стандартні підкреслення посилань*/
+    color: #000000;
+    display: block; /* Посилання займає всю ширину рядка в меню */
+    margin-bottom: 20px;   /* відстань між рядками посиланнями */
+    transition: 0.3s ease; /* Плавний перехід кольору та фону тривалістю 0.3 сек */
+    font-size: 22px; /* Встановіть потрібний розмір у пікселях або rem */
+}
+
+.nav-menu li {
+    padding: 10px 10px;   /* відступи між рядками списку */
+    border-radius: 6px; /* Закруглюємо кути фону пункту меню */
+}
+
+/* колір активної вкладки у бічному меню */
+.nav-link.active li {
+    background-color: #d8d8d8; /* Цвет фона как при наведении */
+    color: #325e67;            /* Цвет текста */
+    font-weight: bold;         /* Жирный шрифт для акцента */
+    /* box-shadow: inset 3px 0 0 #325e67; */ /* Маленькая вертикальная полоска слева  для правої сторони потрібно дадти [ - ] до значення */
+    box-shadow: inset 3px 0 0 #325e67, inset -3px 0 0 #325e67;
+}
+
+
+/* --- ЕФЕКТИ ПРИ НАВЕДЕННІ ТА АКТИВНА СТОРІНКА --- */
+
+.nav-link:hover {
+    color: #325e67; /* При наведенні мишкою текст стає іншого кольору */
+}
+
+.nav-link:hover li {
+    background-color: #d8d8d8; /* При наведенні фон пункту стає іншого кольру */
+}
+
+
+/* --- ОСНОВНИЙ КОНТЕНТ (ПРАВА ЧАСТИНА) --- */
+
+.main-content {
+    margin-left: 300px; /* Зсуваємо весь контент вправо на ширину меню */
+    min-height: 100vh;
+    width: calc(100% - 300px); /* Ширина контенту: 100% вікна мінус ширина меню */
+    display: flex; /* Вмикаємо Flexbox для керування блоками */
+    flex-direction: column;
+}
+
+
+
+/* Додайте цей блок, щоб текст під шапкою мав відступи */
+.content-body {
+    padding: 30px;
+}
+
+
+
+/* --- ВЕРХНЯ ШАПКА (HEADER) --- */
+
+.main-header {
+    width: 100%; /* Займає всю доступну ширину .main-content */
+    height: 80px;
+    padding: 15px 30px; /* Внутрішні відступи всередині шапки */
+    background-color: white; /* Білий фон шапки */
+    display: flex; /* Розташовуємо текст "Пошук" та поле введення в один ряд */
+    align-items: center; /* Центруємо елементи в шапці по вертикалі */
+    justify-content: space-between; /* РОЗСУВАЄ ПОШУК І КОРИСТУВАЧА ПО КРАЯХ */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Додаємо легку тінь знизу шапки */
+}
+
+/* Приберемо зайві відступи у тексту в шапці */
+.main-header span {
+    font-weight: 500;
+}
+
+/* стилі для поля пошуку */
+.search-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Відстань між текстом і інпутом всередині групи */
+}
+
+/* ПОШУК */
+.search-group span {
+    font-size: 1.2rem;
+}
+
+input[type="search"] {
+    margin-left: 10px;      /* відступ між ПОШУК та полем вводу  */
+    width: 200px;
+    padding: 7px 15px;
+    border: 1.5px solid #ccc;   /* рамка навколо  */
+    border-radius: 7px; /* скруглення кутів рамки*/
+    outline: none; /* Прибираємо стандартний контур браузера при натисканні */
+}
+
+input[type="search"]:focus {
+    border-color: #3498db; /* Змінюємо колір рамки на блакитний при натисканні (фокусі) */
+    width: 230px;
+}
+
+/* стилі для ПРОФІЛЬ та ВИЙТИ   <div class="users_allows">   */
+
+.users_allows {
+    display: flex;      /* Вишиковує посилання в один рядок */
+    gap: 20px;       /* Відстань між кнопками Профіль та Вийти */
+    align-items: center;        /* Центрує їх по вертикалі */
+}
+
+/* посилання ПРОФІЛЬ та ВИЙТИ  */
+.btn-link {
+    text-decoration: none;      /* Прибираємо стандартне підкреслення */
+    color: #325e67;             /* Основний колір тексту (темно-бірюзовий) */
+    font-weight: 600;           /* Робимо шрифт трохи жирнішим */
+    font-size: 16px;            /* Розмір шрифту */
+    padding: 8px 18px;          /* Внутрішні відступи (висота та ширина кнопки) */
+    border: 2px solid #325e67;  /* Контур кнопки */
+    border-radius: 6px;         /* Закруглені кути */
+    transition: all 0.3s ease;  /* Плавна анімація кольору при наведенні */
+    background-color: transparent; /* Прозорий фон за замовчуванням */
+}
+
+/* Ефект при наведенні мишкою */
+.btn-link:hover {
+    background-color: #325e67;  /* Кнопка повністю зафарбовується */
+    color: #ffffff;             /* Колір тексту змінюється на білий */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легка тінь для об'єму */
+}
+
+/* Якщо в посиланні є слово exit або logout — воно стане червоним */
+.btn-link[href*="exit"],
+.btn-link[href*="logout"] {
+    color: #e74c3c;             /* Червоний текст */
+    border-color: #e74c3c;      /* Червона рамка */
+}
+
+/* Ефект при наведенні саме на червону кнопку */
+.btn-link[href*="exit"]:hover,
+.btn-link[href*="logout"]:hover {
+    background-color: #e74c3c;  /* Червоний фон */
+    color: white;               /* Білий текст */
+}
+
+/* ефект при наведенні */
+.btn-link:hover {
+    transform: translateY( -1px); /* кнопка ніби трохи піднімається */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+
+/* робота із контентом в body main-content */
+/* about та nothin є окремими div-ами */
+
+/* робота із about та його контентом */
+
+
+.about {
+    padding: 30px;
+}
+
+/* текст */
+.about_info {
+    font-size: 1.2rem;
+}
+
+/* Стиль для контейнера (блоку), в якому лежить картинка */
+.about_pictures {
+    padding: 20px 40px; /* Внутрішні відступи з боків, щоб картинка була на рівні з текстом */
+}
+
+/* Налаштування самих блоків з картинками */
+.main_pictures {
+    flex: 1;             /* Дозволяє блокам мати однакову ширину */
+    min-width: 500px;    /* Мінімальна ширина одного фото (щоб вони не були занадто малими) */
+    max-width: 880px;    /* Максимальна ширина (щоб одне фото не розтягувалось на весь екран) */
+}
+
+
+
+/* фото */
+/* Контейнер для обох картинок */
+.about_pictures_main {
+    display: flex;           /* Ставимо блоки з картинками в один ряд */
+    gap: 20px;               /* Відстань між картинками */
+    padding: 20px 0;         /* Відступи зверху та знизу від тексту */
+    justify-content: center; /* Центруємо картинки в основному блоці */
+}
+
+/* Обгортка для кожної картинки */
+.main_pictures {
+    flex: 1;                 /* Обидві картинки будуть займати однакову ширину */
+    max-width: 800px;        /* Обмежуємо максимальний розмір, щоб не були занадто великими */
+}
+/* Стиль самої картинки */
+.self-pictures {
+    width: 100%;             /* Картинка заповнює весь свій блок .main_pictures */
+    height: 480px;           /* Фіксована висота, щоб обидві картинки були в один рівень */
+    object-fit: cover;       /* МАГІЯ: обрізає краї, щоб картинка не розтягувалася, а виглядала ідеально */
+    border-radius: 12px;     /* Закруглені кути */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Легка тінь для об'єму */
+    transition: 0.3s ease;   /* Плавна анімація */
+}
+
+/* Ефект при наведенні */
+.self-pictures:hover {
+    transform: scale(1.03);  /* Картинка трохи збільшується */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+
+.nothin {
+    padding: 30px;
+    font-size: 1rem;
+}
+
+
+/* для footer */
+
+.main_footer {
+    margin-top: auto; /* ЦЕ ГОЛОВНЕ: виштовхує футер до низу */
+    width: 100%;
+    background-color: #707175;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-right {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-right a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Контейнер футера */
+.main_footer {
+    background-color: #325e67; /* Робимо фон темним, як меню */
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+/* Стилі для іконок */
+.footer-right a i {
+    font-size: 1.8rem !important; /* Робимо їх великими */
+    color: #ffffff !important;    /* ПРИМУСОВО білий колір */
+    margin-right: 15px;           /* Відступ від тексту */
+    display: inline-block !important; /* Переконуємося, що вони відображаються */
+    transition: 0.3s ease;
+}
+
+/* Ефект при наведенні */
+.footer-right a:hover i {
+    color: #d8d8d8 !important;    /* Зміна кольору при наведенні */
+    transform: scale(1.2);         /* Легке збільшення */
+}
+
+/* Стиль для тексту пошти */
+.footer-right a {
+    text-decoration: none;
+    color: white !important;
+    font-weight: 500;
+}

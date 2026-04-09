@@ -1,0 +1,45 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <!-- Банер (можна залишити той самий або змінити на фото офісу/карти) -->
+    <div class="about-banner">
+        <img src="{% static 'main_app/img/01.png' %}" alt="Buy & Enjoy Contacts">
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="about-title">Контакти: Ми завжди на зв’язку</h1>
+    <p class="about-subtitle">Маєте запитання? Наша команда готова допомогти вам з вибором техніки.</p>
+
+    <!-- Контент у дві колонки -->
+    <div class="info-grid">
+        <!-- Ліва колонка: Контактна інформація -->
+        <div class="info-section">
+            <h3>Наші координати</h3>
+            <p>Ви можете завітати до нашого шоуруму або зв'язатися з нами будь-яким зручним способом:</p>
+
+            <ul class="features-list">
+                <li><strong>Адреса:</strong> м. Київ, вул. Технологічна, 101</li>
+                <li><strong>Телефон:</strong> +38 (044) 123-45-67</li>
+                <li><strong>Email:</strong> support@buy-enjoy.ua</li>
+                <li><strong>Графік:</strong> Пн-Пт: 09:00 - 20:00</li>
+            </ul>
+        </div>
+
+        <!-- Права колонка: Форма або соцмережі -->
+        <div class="info-section">
+            <h3>Напишіть нам</h3>
+            <p>Ми відповідаємо протягом 15 хвилин у робочий час.</p>
+
+            <ul class="features-list">
+                <li><a href="#" style="text-decoration: none; color: inherit;">Telegram: @buy_enjoy_tech</a></li>
+                <li><a href="#" style="text-decoration: none; color: inherit;">Instagram: @buy_enjoy_official</a></li>
+                <li><a href="#" style="text-decoration: none; color: inherit;">Viber: Написати нам</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

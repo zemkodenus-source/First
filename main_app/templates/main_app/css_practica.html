@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Css practica</title>
+    <link rel="stylesheet" href="{% static 'main_app/css/my_css.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="side-menu">
+        <h3>НАВІГАЦІЯ</h3>
+
+        <ul class="nav-menu">
+            <!-- Головна -->
+            <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                <li><span>Головна</span></li>
+            </a>
+            <a href="{% url 'shop' %}" class="nav-link {% if 'shop' in request.path %}active{% endif %}">
+                <li><span>Товари</span></li>
+            </a>
+
+            <!-- Про нас -->
+            <a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}">
+                <li><span>Про нас</span></li>
+            </a>
+
+            <!-- Контакти -->
+            <a href="{% url 'contact' %}" class="nav-link {% if 'contact' in request.path %}active{% endif %}">
+                <li><span>Контакти</span></li>
+            </a>
+            <a href="{% url 'css_practica' %}" class="nav-link {% if 'css_practica' in request.path %}active{% endif %}" >
+                <li><span>CSS PRACTICA</span></li>
+            </a>
+            <a href="{% url 'css_instruction' %}" class="nav-link {% if 'css_instryction' in request.path %}active{% endif %}" >
+                <li><span>CSS INSTRUCTION</span></li>
+            </a>
+
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <header class="main-header">
+            <div class="search-group">
+                <span>Пошук</span>
+                <input type="search">
+            </div>
+
+            <div class="users_allows">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'registration' %}" class="btn-link">Зареєструватися</a>
+                {% else %}
+                    <a href="{% url 'profile' %}" class="btn-link">Профіль</a>
+                    <a href="{% url 'login_exit' %}" class="btn-link">Вийти</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <div class="about">
+            <div class="about_info">
+                <h1><strong>CSS PRACTICA</strong></h1>
+                <p>Дана сторінка розроблена для створення дизайну під час вивчення мови CSS </p>
+            </div>    
+            <div class="about_pictures_main">
+                <div class="main_pictures">
+                    <img src="media/additions/1.jpg" alt="photo 1" class="self-pictures">
+                </div>
+
+                <div class="main_pictures">
+                    <img src="media/additions/2.webp" alt="photo 2" class="self-pictures">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="nothin">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem, culpa officia quidem quod repellendus.<br> A, ab accusantium aut autem cumque doloremque doloribus expedita in laudantium praesentium, quis soluta temporibus.
+            </p>
+        </div>
+
+        <footer class="main_footer">
+            <div class="footer-left">
+                <p>&copy; 2024 CSS Practica. Всі права захищені.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#">buy_&_enjoy@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

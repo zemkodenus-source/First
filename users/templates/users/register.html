@@ -1,0 +1,34 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Реєстрація | Buy & Enjoy{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <i class="fa-solid fa-user-plus auth-icon"></i>
+            <h1>Реєстрація</h1>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="auth-form-fields">
+                {{ form.as_p }}
+            </div>
+
+            <div class="auth-actions">
+                <!-- Використовуємо btn-danger (червону), як ви хотіли -->
+                <button class="btn btn-danger btn-auth-submit" type="submit">
+                    Зареєструватися
+                </button>
+
+                <div class="auth-footer">
+                    <span class="text-muted small">Вже маєте акаунт?</span>
+                    <a href="{% url 'login' %}" class="reg-link small">Увійти</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

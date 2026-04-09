@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Css Instruction</title>
+    <link rel="stylesheet" href="{% static 'main_app/css/instryctions.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+    <div class="side-menu">
+        <h3>НАВІГАЦІЯ</h3>
+    <ul class="nav-menu">
+        <!-- Головна -->
+        <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+            <li><i class="fa-solid fa-house main-icon"></i><span>Головна</span></li>
+        </a>
+        <a href="{% url 'shop' %}" class="nav-link {% if 'shop' in request.path %}active{% endif %}">
+            <li><i class="fa-solid fa-house main-icon"></i><span>Товари</span></li>
+        </a>
+
+        <!-- Про нас -->
+        <a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}">
+            <li><i class="fa-solid fa-address-card main-icon"></i><span>Про нас</span></li>
+        </a>
+
+        <!-- Контакти -->
+        <a href="{% url 'contact' %}" class="nav-link {% if 'contact' in request.path %}active{% endif %}">
+            <li><i class="fa-solid fa-envelope main-icon"></i><span>Контакти</span></li>
+        </a>
+        <a href="{% url 'css_practica' %}" class="nav-link {% if 'css_practica' in request.path %}active{% endif %}" >
+            <li><i class="fa-solid fa-envelope main-icon"></i><span>CSS PRACTICA</span></li>
+        </a>
+        <a href="{% url 'css_instruction' %}" class="nav-link {% if 'css_instruction' in request.path %}active{% endif %}" >
+            <li><i class="fa-solid fa-envelope main-icon"></i><span>CSS INSTRUCTION</span></li>
+        </a>
+    </ul>
+    </div>
+
+    <div class="main-content">
+        <header class="main-header">
+            <p>Пошук<input type="search"></p>
+        </header>
+
+        <div class="about">
+            <h1><strong>CSS INSTRUCTION</strong></h1>
+            <p>Дана сторінка розроблена як інструкція та зразок для подальшого створення нових сторінок з використанням здобутих навичок мови CSS </p>
+        </div>
+
+        <div class="nothin">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem, culpa officia quidem quod repellendus.<br> A, ab accusantium aut autem cumque doloremque doloribus expedita in laudantium praesentium, quis soluta temporibus.
+            </p>
+        </div>
+        
+        <div class="pictures-row">
+            <div class="pictures"><!-- Додаємо class="pictures-img", щоб CSS міг знайти цей елемент -->
+                <img src="media/additions/1.jpg" alt="Код CSS" class="pictures-img">
+            </div>
+
+            <div class="pictures">
+                <img src="media/additions/2.webp" alt="CSS CODE" class="pictures-img">
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

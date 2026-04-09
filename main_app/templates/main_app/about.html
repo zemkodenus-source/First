@@ -1,0 +1,36 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Про нас | Buy & Enjoy{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <!-- Банер -->
+    <div class="about-banner">
+        <img src="{% static 'main_app/img/01.png' %}" alt="Buy & Enjoy Store">
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="about-title">Про нас: Твоя точка доступу до майбутнього</h1>
+    <p class="about-subtitle">Вітаємо в <strong>Buy & Enjoy</strong>. Ми робимо технології доступними для кожного.</p>
+
+    <!-- Контент у дві колонки -->
+    <div class="info-grid">
+        <div class="info-section">
+            <h3>Хто ми такі?</h3>
+            <p>Ми заснували цей проєкт як навчальний стартап, щоб показати, як сучасна електроніка змінює світ. Наша мета — надати кожному доступ до найкращих гаджетів за справедливу ціну.</p>
+            <p>Сьогодні ми ростемо та розвиваємося, впроваджуючи нові стандарти сервісу в інтернет-торгівлі технікою.</p>
+        </div>
+
+        <div class="info-section">
+            <h3>Чому обирають нас?</h3>
+            <ul class="features-list">
+                <li>Тільки оригінальна техніка</li>
+                <li>Професійна консультація</li>
+                <li>Гарантія та власний сервіс</li>
+                <li>Швидка доставка по всій країні</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

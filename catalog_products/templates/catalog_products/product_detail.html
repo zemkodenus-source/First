@@ -1,0 +1,136 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}{{ product.product }} - Деталі{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'shop' %}">Каталог</a></li>
+            <li class="breadcrumb-item active">{{ product.product }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- ЛІВА ЧАСТИНА: ГАЛЕРЕЯ ФОТО -->
+        <div class="col-md-5">
+            <!-- Головне велике фото -->
+            <div class="main-image-container" style="background: #f8f9fa; height: 450px; border-radius: 20px; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                {% if product.main_image %}
+                    <img src="{{ product.main_image.url }}" id="main-display-img" alt="{{ product.product }}" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s;">
+                {% else %}
+                    <img src="{% static 'main_app/img/no_photo.png' %}" alt="No photo" style="max-width: 200px; opacity: 0.3;">
+                {% endif %}
+            </div>
+
+            <!-- Мініатюри для перемикання -->
+            <div class="thumbnails-grid d-flex flex-wrap gap-2 mt-3 justify-content-center">
+                {% if product.main_image %}
+                    <img src="{{ product.main_image.url }}" class="img-thumbnail thumb-active" style="width: 80px; height: 80px; object-fit: cover; cursor: pointer; border-width: 2px;" onclick="changeProductImage(this)">
+                {% endif %}
+
+                {% for extra in product.images.all %}
+                    <img src="{{ extra.image.url }}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover; cursor: pointer;" onclick="changeProductImage(this)">
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- ПРАВА ЧАСТИНА: ІНФОРМАЦІЯ -->
+        <div class="col-md-7">
+            <h1 class="fw-bold">{{ product.product }}</h1>
+            <p class="h2 text-danger fw-bold my-3">{{ product.price }} USD</p>
+
+            <div class="description-section mt-4">
+                <h5 class="fw-bold">Опис товару</h5>
+                <p class="text-muted" style="line-height: 1.6;">
+                    {{ product.description|default:"Опис для цього товару скоро з'явиться." }}
+                </p>
+            </div>
+
+            <div class="spec-section mt-5">
+                <h5 class="fw-bold mb-3">Технічні характеристики</h5>
+                <table class="table table-hover">
+                    <tbody>
+                        {% if product.specifications %}
+                            {% for key, value in product.specifications.items %}
+                            <tr>
+                                <td class="text-muted" style="width: 40%;">{{ key }}</td>
+                                <td class="fw-bold">{{ value }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr><td colspan="2">Характеристики ще не заповнені.</td></tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="buy-button mt-4" style="padding: 15px 40px; font-size: 1.2rem;">
+                <i class="fa-solid fa-cart-shopping me-2"></i>Додати в кошик
+            </button>
+        </div>
+    </div>
+</div>
+<div class="comments-section">
+    <div class="comments">
+        <h3>Коментарі ({{ comments.count }})</h3>
+        {% for el in comments %}
+            <div class="comment-card">
+                <div class="comment-header">
+                    <span class="comment-autor">{{ el.user }}</span>
+                    <span>{{ el.created_at |date:"d.m.Y H:i" }}</span>
+                </div>
+                <p class="comment-text">{{ el.text }}</p>
+            </div>
+        {% empty %}
+            <p style="color: #999;">Коментарів ще немає. Будьте першим!</p>
+        {% endfor %}
+    </div>
+
+    <div class="comment-form">
+        {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="comment-form-str">
+                    {{ form.as_p }}
+                </div>
+                <button class="add-comment" type="submit">Добавити коментар</button>
+            </form>
+        {% else %}
+            <div class="comment-allow-img">
+                <img src="/media/additions/comment-allow.png">
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- JavaScript для перемикання фото -->
+<script>
+    function changeProductImage(element) {
+        // Змінюємо джерело основного фото
+        const mainImg = document.getElementById('main-display-img');
+        mainImg.src = element.src;
+
+        // Прибираємо виділення з усіх мініатюр
+        document.querySelectorAll('.img-thumbnail').forEach(img => {
+            img.style.borderColor = '#dee2e6';
+            img.classList.remove('thumb-active');
+        });
+
+        // Додаємо виділення активній мініатюрі
+        element.style.borderColor = '#0d6efd';
+        element.classList.add('thumb-active');
+    }
+</script>
+
+<style>
+    .thumb-active {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
+    .img-thumbnail:hover {
+        opacity: 0.8;
+    }
+</style>
+{% endblock %}

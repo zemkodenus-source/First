@@ -1,0 +1,40 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Каталог товарів{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'catalog_products/css/css_catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2 style="padding-left: 20px; margin-top: 20px;">Всі телефони</h2>
+
+    <div class="catalog-container">
+        {% for product in products %}
+            <div class="product-card">
+                <!-- БЛОК З ФОТО -->
+                <div class="product-image-container" style="height: 200px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px;">
+                    {% if product.main_image %}
+                        <img src="{{ product.main_image.url }}" alt="{{ product.product }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    {% else %}
+                        <div style="color: #ccc; font-size: 0.8rem; text-align: center; padding: 10px;">
+                            <i class="fa-solid fa-image fa-2x mb-2"></i><br>
+                            Фото з'явиться згодом
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="product-title">{{ product.product }}</div>
+                <div class="product-price">{{ product.price }} USD</div>
+
+                <div class="product-buttons">
+                    <a href="{% url 'product_detail' product.id %}" class="btn-detail">Детальніше</a>
+                    <button class="buy-button">Купити</button>
+                </div>
+            </div>
+        {% empty %}
+            <p>Товарів поки немає.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
