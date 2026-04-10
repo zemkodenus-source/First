@@ -65,10 +65,20 @@
                     </tbody>
                 </table>
             </div>
-
-            <button class="buy-button mt-4" style="padding: 15px 40px; font-size: 1.2rem;">
-                <i class="fa-solid fa-cart-shopping me-2"></i>Додати в кошик
-            </button>
+            <div class="basket">
+                {% if user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="buy-button mt-4" style="padding: 15px 40px; font-size: 1.2rem;" type="submit" name="add_to_basket">
+                            <i class="fa-solid fa-cart-shopping me-2"></i>Додати в кошик
+                        </button>
+                    </form>
+                {% else %}
+                    <div class="can't-buy">
+                        <span><strong>Авторизуйтесь щоб здійснити покупку</strong></span>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
@@ -95,7 +105,7 @@
                 <div class="comment-form-str">
                     {{ form.as_p }}
                 </div>
-                <button class="add-comment" type="submit">Добавити коментар</button>
+                <button class="add-comment" type="submit" name="add-comment">Добавити коментар</button>
             </form>
         {% else %}
             <div class="comment-allow-img">

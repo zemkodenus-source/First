@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from catalog_products.models import Products
 
 
 def user_directory_path(instance, filename):
@@ -22,3 +23,12 @@ class Profile(models.Model):            #  Окрема таблиця яка п
     class Meta:
         verbose_name = 'Профайл'
         verbose_name_plural  = 'Профайли'
+
+
+class Basket(models.Model):
+    product = models.ForeignKey(Products , on_delete=models.CASCADE , related_name='basket' , verbose_name='Товар')
+    user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='basket_items' , verbose_name='Користувач')
+    quantity = models.PositiveIntegerField(default=1, verbose_name='Кількість')
+
+    def get_total_price(self):
+        return self.product.price * self.quantity

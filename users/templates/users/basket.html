@@ -1,0 +1,20 @@
+{% extends 'main_app/main.html' %}
+{% load static %}
+
+{% block title %}Кошик{% endblock %}
+
+{% block content %}
+<div class="basket">
+    <h3>Користувач: {{ user.username }}</h3>
+    <h1><strong>Кошик</strong></h1>
+    {% for el in basket %}
+        <p>
+            <p>{{ el.product }}</p>
+            <img src="{{ el.product.main_image.url }}" height="350">
+            <p>Ціна: {{ el.product.price }} USD</p>
+            <button class="btn btn-" style="background-color: green; color: white;" >Оформити замовлення</button>
+        </p>
+    {% endfor %}
+
+</div>
+{% endblock %}

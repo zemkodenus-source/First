@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Products, ProductImage , Comments
+from users.models import Basket
 # Register your models here.
 
 class ProductImageInline(admin.TabularInline):
@@ -21,3 +22,9 @@ class CommentsAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'created_at']  # колонки в списку
     list_filter = ['created_at']                         # фільтр справа
     search_fields = ['author__username', 'text']         # пошук
+
+
+@admin.register(Basket)
+class BasketAdmin(admin.ModelAdmin):
+    list_display = ['user' , 'product']
+    search_fields = ['user__username']

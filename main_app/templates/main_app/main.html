@@ -58,13 +58,6 @@
         <header class="p-3 bg-white border-bottom">
         <div class="container-fluid px-4">
             <div class="d-flex flex-wrap align-items-center justify-content-between">
-
-                 <!-- Навігація зверху (можна залишити або прибрати, бо є зліва) -->
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-dark">Акції</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Доставка</a></li>
-                </ul>
-
                  <!-- Пошук та Кнопки -->
                 <div class="d-flex align-items-center">
                     <form class="me-3" role="search">
@@ -80,6 +73,7 @@
                             <form action="{% url 'login_exit' %}" method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">Вийти</button>
+                                <a href="{% url 'basket' %}"><button type="button" style="background-color: green; color: white;" class="btn btn-">Кошик</button></a>
                             </form>
                         {% endif %}
                     </div>
